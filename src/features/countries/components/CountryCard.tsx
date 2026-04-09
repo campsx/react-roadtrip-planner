@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Country } from '../model/countries.types';
-import { useAddCountryToRoadtrip, useRoadtrip } from '../../roadtrip/hooks/useRoadtrip';
+import { useRoadtrip } from '../../roadtrip/hooks/useRoadtrip';
 import { Button } from '../../../components/ui/Button';
 import { Badge } from '../../../components/ui/Badge';
 
@@ -9,8 +9,7 @@ type CountryCardProps = {
 };
 
 export function CountryCard({ country }: CountryCardProps) {
-  const { add, isLoading } = useAddCountryToRoadtrip();
-  const { countryCodes } = useRoadtrip();
+  const { addCountry, isLoading, countryCodes } = useRoadtrip();
   const isInRoadtrip = countryCodes.includes(country.code);
 
   return (
@@ -42,7 +41,7 @@ export function CountryCard({ country }: CountryCardProps) {
             variant={isInRoadtrip ? 'secondary' : 'primary'}
             isLoading={isLoading}
             disabled={isInRoadtrip}
-            onClick={() => void add(country.code)}
+            onClick={() => void addCountry(country.code)}
             className="w-full"
           >
             {isInRoadtrip ? '✓ Dans le roadtrip' : '+ Ajouter au roadtrip'}

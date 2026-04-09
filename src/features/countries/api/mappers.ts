@@ -1,4 +1,4 @@
-import type { Country, PaginatedResponse } from '../model/countries.types';
+import type { Country } from '../model/countries.types';
 
 export type RawCountry = Record<string, unknown>;
 export type RawPaginated = { data: RawCountry[]; total: number; page: number; pageSize: number };

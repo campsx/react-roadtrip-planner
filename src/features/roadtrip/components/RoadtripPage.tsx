@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useRoadtrip, useRemoveCountryFromRoadtrip } from '../hooks/useRoadtrip';
-import { Button } from '../../../components/ui/Button';
-import { Spinner } from '../../../components/ui/Spinner';
-import { ErrorMessage } from '../../../components/ui/ErrorMessage';
-import { EmptyState } from '../../../components/ui/EmptyState';
-import { PageWrapper } from '../../../components/layout/PageWrapper';
+import { useRoadtrip } from '../hooks/useRoadtrip';
+import { Button } from '@/components/ui/Button.tsx';
+import { Spinner } from '@/components/ui/Spinner.tsx';
+import { ErrorMessage } from '@/components/ui/ErrorMessage.tsx';
+import { EmptyState } from '@/components/ui/EmptyState.tsx';
+import { PageWrapper } from '@/components/layout/PageWrapper.tsx';
 
 export default function RoadtripPage() {
-  const { countries, isLoading, error } = useRoadtrip();
-  const { remove, isLoading: isRemoving } = useRemoveCountryFromRoadtrip();
+  const { countries, isLoading, error, removeCountry } = useRoadtrip();
 
   return (
     <PageWrapper>
@@ -57,8 +56,8 @@ export default function RoadtripPage() {
               </div>
               <Button
                 variant="danger"
-                isLoading={isRemoving}
-                onClick={() => void remove(country.code)}
+                isLoading={isLoading}
+                onClick={() => void removeCountry(country.code)}
                 className="shrink-0"
               >
                 Supprimer

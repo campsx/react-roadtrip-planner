@@ -3,11 +3,11 @@ import { useCountries } from '../hooks/useCountries';
 import { useSearchCountries } from '../hooks/useSearchCountries';
 import { CountryCard } from './CountryCard';
 import { SearchBar } from './SearchBar';
-import { Pagination } from '../../../components/Pagination';
-import { Spinner } from '../../../components/ui/Spinner';
-import { ErrorMessage } from '../../../components/ui/ErrorMessage';
-import { EmptyState } from '../../../components/ui/EmptyState';
-import { PageWrapper } from '../../../components/layout/PageWrapper';
+import { Pagination } from '@/components/Pagination.tsx';
+import { Spinner } from '@/components/ui/Spinner.tsx';
+import { ErrorMessage } from '@/components/ui/ErrorMessage.tsx';
+import { EmptyState } from '@/components/ui/EmptyState.tsx';
+import { PageWrapper } from '@/components/layout/PageWrapper.tsx';
 
 const PAGE_SIZE = 20;
 

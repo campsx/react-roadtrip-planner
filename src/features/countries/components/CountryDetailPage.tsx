@@ -1,6 +1,6 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useCountry } from '../hooks/useCountry';
-import { useAddCountryToRoadtrip, useRoadtrip } from '../../roadtrip/hooks/useRoadtrip';
+import { useRoadtrip } from '../../roadtrip/hooks/useRoadtrip';
 import { Button } from '../../../components/ui/Button';
 import { Badge } from '../../../components/ui/Badge';
 import { Spinner } from '../../../components/ui/Spinner';
@@ -11,8 +11,7 @@ export default function CountryDetailPage() {
   const { code = '' } = useParams<{ code: string }>();
   const navigate = useNavigate();
   const { country, isLoading, error } = useCountry(code);
-  const { add, isLoading: isAdding } = useAddCountryToRoadtrip();
-  const { countryCodes } = useRoadtrip();
+  const { addCountry, isLoading: isAdding, countryCodes } = useRoadtrip();
   const isInRoadtrip = countryCodes.includes(code);
 
   return (
@@ -44,7 +43,7 @@ export default function CountryDetailPage() {
               variant={isInRoadtrip ? 'secondary' : 'primary'}
               isLoading={isAdding}
               disabled={isInRoadtrip}
-              onClick={() => void add(country.code)}
+              onClick={() => void addCountry(country.code)}
               className="w-full"
             >
               {isInRoadtrip ? '✓ Dans le roadtrip' : '+ Ajouter au roadtrip'}

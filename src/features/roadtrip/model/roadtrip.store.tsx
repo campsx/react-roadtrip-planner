@@ -60,6 +60,7 @@ export function RoadtripProvider({ children }: { children: ReactNode }) {
     try {
       await roadtripApi.addCountry(cca3);
       await loadCountryDetails([...prev, cca3].filter((c, i, a) => a.indexOf(c) === i));
+      addNotification({ type: 'success', message: 'Pays ajouté à votre roadtrip !' });
     } catch (err: unknown) {
       const message =
         (err as { message?: string }).message ?? "Erreur lors de l'ajout du pays.";
@@ -76,6 +77,7 @@ export function RoadtripProvider({ children }: { children: ReactNode }) {
     setCountries((cs) => cs.filter((c) => c.code !== cca3));
     try {
       await roadtripApi.removeCountry(cca3);
+      addNotification({ type: 'info', message: 'Pays retiré de votre roadtrip.' });
     } catch (err: unknown) {
       const message =
         (err as { message?: string }).message ?? 'Erreur lors de la suppression du pays.';
